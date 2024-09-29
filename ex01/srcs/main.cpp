@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:15:22 by mgagne            #+#    #+#             */
-/*   Updated: 2024/09/29 18:28:32 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/09/29 19:25:40 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,16 @@
 
 int	main(int argc, char **argv)
 {
+	try
+	{
+		if (argc != 2)
+			throw std::invalid_argument("This program takes 1 parameter");
+		std::string s = argv[1];
+		parse(s);
+		startRpn(s);
+	}
+	catch (std::invalid_argument const &err)
+	{ std::cerr << "Error: " << err.what() << std::endl;}
+
 	return (0);
 }
