@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.h                                  :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 16:04:14 by mgagne            #+#    #+#             */
-/*   Updated: 2024/09/29 03:10:24 by mgagne           ###   ########.fr       */
+/*   Created: 2024/02/20 15:15:22 by mgagne            #+#    #+#             */
+/*   Updated: 2024/09/29 18:28:32 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_H
-	#define SPAN_H
+#include "RPN.hpp"
 
-	#include <iostream>
-	#include <algorithm>
-	#include <map>
-	#include <sstream>
-	#include <fstream>
-
-	#define CONSTRUCTOR ": Constructor called"
-	#define DESTRUCTOR ": Destructor called"
-	#define CPYCONSTRUCTOR ": Copy Constructor called"
-
-#endif
+int	main(int argc, char **argv)
+{
+	return (0);
+}
