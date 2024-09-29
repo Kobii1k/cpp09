@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:15:22 by mgagne            #+#    #+#             */
-/*   Updated: 2024/09/28 15:02:36 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/09/29 05:22:20 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ int	main(int argc, char **argv)
 
 	try
 	{
-		if (argc != 2)
+		if (argc != 3)
 			throw std::invalid_argument("invalid argument");
 
-		BitcoinExchange	btc("./data.csv");
-		btc.getInputData(argv[1]);
+		BitcoinExchange	btc(argv[1], argv[2]);
 	}
 	catch (std::invalid_argument const &err)
 	{ std::cerr << err.what() << std::endl; }
 
 	return (0);
 }
+
+//			"./data.csv"
