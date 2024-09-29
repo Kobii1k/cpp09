@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:21:22 by mgagne            #+#    #+#             */
-/*   Updated: 2024/09/29 05:55:36 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/09/29 18:05:04 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 	class BitcoinExchange
 	{
 		private :
-			std::map<std::string, double> db;
+			std::map<std::string, float> db;
 			BitcoinExchange();
 
 		public :
@@ -32,7 +32,7 @@
 
 			void storeData(std::string line);
 			void getInput(std::string line);
-			void useInput(std::string date, double amount);
+			void useInput(std::string date, float amount);
 
 			void checkDate(std::string date);
 			void checkValue(std::string line);
