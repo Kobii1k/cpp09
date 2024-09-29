@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:23:56 by mgagne            #+#    #+#             */
-/*   Updated: 2024/09/29 19:26:48 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/09/29 19:33:13 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,17 @@ void parse(std::string s)
 	return ;
 }
 
-void startRpn(char *str)
+void startRpn(std::string  s)
 {
 	std::stack<int> stack;
-	
+	for (size_t i = 0; i < s.length(); i++)
+	{
+		if (isdigit(s[i]))
+		{
+			stack.push(std::atoi(s[i]));
+		}
+	}
+
 }
 
 void computeRpn()
