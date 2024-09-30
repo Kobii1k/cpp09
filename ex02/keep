@@ -11,28 +11,55 @@
 20 17 13 8 7 5 2
 
 
-//v1
-//tant qu'il est possible de faire des paires :
-    //faire des paires (laissez un seul si impair)
-    //trier à l'interieur des pairs (le plus grand à gauche)
+//jacobsthal : definition : choisit l'index de la valeur a inserer par dichotomie
+//==choisir les nombres les plus "optimisés" (2^n-1 maximum) pour faire le moins d'étapes possibles
 
-//défaire toutes les paires en les triant (jsp comment)
-
-//faire deux "listes" avec les nombres de la gauche des paires et l'autre avec ceux de droites
-//grâce au jacobsthal, choisir les nombres les plus "optimisés" (2^n-1 maximum) pour faire le moins d'étapes possibles
-//les ajouter par dichotomie un par un
-
-
-//v2
-
-//si la taille du container de valeurs en entrée == 2
-	//trier si besoin
+//si container pair size == 1
+	//stop
 //sinon
-	//trouver le milieu de la liste de nombres
-	//créer deux nouveaux containers : gauche et droit en divisant celui donné en parametres
-	//apeller la fonction actuelle sur ces deux parties
-//faire remonter les fonctions (jsp comment exactement? en défaisant les paires ? ça se fait tout seul peut etre)
+	//faire des paires avec les plus grandes valeurs des paires du containers
+    //trier à l'interieur des pairs (le plus grand à gauche)
+	//garder la valeur potentiellement laissee seule
+	//rapeller la fonction actuelle avc les pairs triees
+
+//inserer la valeur secondaire inferieure a la plus petite "grande valeure"
+//jacobsthal + dichotomie
+
+// !!! valeurs laisses sur le cote !!!
 
 
-//v3
-//mix des deux, a peu près
+
+
+The best way to learn would be to try "simulate" that algorithm on a piece of paper on your own.
+No, this is not a call to merge sort, nor to insertion sort. There is one function called Merge_insertion_sort and it is calling Merge_insertion_sort again.
+There is a sorting algorithm called mergesort. There is a sorting algorithm called insertion sort. And we can even improve the speed (of some types) of merge_sort by using insertion_sort in certain situations, but those has little to do with Ford Johnson algorithm.
+FJ sort has some technical difficulties (at the second level you sort not numbers, but pairs of numbers, on the third level - pairs of pairs...) I would advise first to try understand recusrion on simpler examples (maybe regular mergesort, "top-down" version - the recursion and concepts are very simple; maybe quicksort - bit more complex, still should not too hard). Then, when you feel confident with recursion, try attack Merge insertion and its quirks. Again, it will be complex for a beginer.
+Using arabic numbers I will be referring to the stage of the algorithm description from the Wikipedia, and with roman numbers to the depth of recursion (how many times we called your function). I focus on the recursion part. The order of binary insertions (and how to do binary search) and how to implement problem from (*) is not addressed.
+
+We start with 6 7 8 5 3 1 2 4
+We enter the function, so we are at the level I.
+Stages 1 and 2 pair elements and sort them
+(6 7 ) (5 8) (1 3) (2 4 )
+We look at the larger values from each pair: 7 8 3 4, and sort them (by calling our function)
+We are on the level II now. And have to sort 7 8 3 4
+stages 1 and 2 (pair and sort) result with:
+(7 8) (3 4)
+step 3 is to look at the larger values (a table 8 4) and sort it...
+We called our sort function third time (we are on the level III) and have to sort 8 4
+steps 1 and 2 sort our only pair. (4 8) We can leave the function (step down from level III)
+We are back on the level II. We got a sorted array [4,8]
+and sorted pairs in the same order (3 4) (7 8) *)
+Step 4. tell us to insert the smaller element of the smallest pair at the beginning of the array. The element is 3, so we get [3 4 8].
+Step 5 stalls ut to insert the last number into the table using binary search. The number is 7 and we end with
+3 4 7 8.
+We have an sorted array, and return while exiting the function, so we are stepping down from the level II.
+
+We are back on the level I. We got 3 4 7 8 as a sorted first half, and corresponding pairs*) are
+(1 3) (2 4) (6 7 ) (5 8)
+Step 4: smallest element from the first pair lands at the beginning: 1 3 4 7 8
+Numbers 2 6 and 5 remains, we use binary search to place them in the correct position**)
+
+We get 1 2 3 4 5 6 7 8 Sorted!
+
+* As you see, we are talking here about sorting an array, then about sorted pairs. We have to arrange the smaller elements from each pair in the same order as the larger ones. I'm nominating those details;
+** the order we insert the numbers is also important!
