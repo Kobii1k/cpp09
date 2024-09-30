@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:23:56 by mgagne            #+#    #+#             */
-/*   Updated: 2024/09/29 19:33:13 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/09/30 04:31:56 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,38 +22,70 @@ void parse(std::string s)
 		if (i % 2 == 1)
 		{
 			if (s[i] != ' ')
-				throw std::invalid_argument("invalid argument");
+				throw std::invalid_argument("arguments needs to be spaced out by ' '");
 		}
 		else
 		{
-			if (s[i] >= '0' && s[i] <= '9')
+			if (isdigit(s[i]))
 				nbs++;
 			else if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/')
 				operators++;
 			else
-				throw std::invalid_argument("invalid argument 2");
+				throw std::invalid_argument("accepted arguments are digits 0-9 and operators '+-/*'");
 		}
 	}
 	if ((nbs - 1 != operators) || nbs < 1 || operators < 1)
-		throw std::invalid_argument("invalid argument 3");
+		throw std::invalid_argument("Wrong syntax, bad number of operators or numbers");
 	return ;
 }
 
 void startRpn(std::string  s)
 {
 	std::stack<int> stack;
+	std::string operators = "+-*/";
+
 	for (size_t i = 0; i < s.length(); i++)
 	{
-		if (isdigit(s[i]))
+		if (operators.find(s[i]) != std::string::npos)
 		{
-			stack.push(std::atoi(s[i]));
+			if (s[i] == '/' && stack.top() == 0)
+				throw std::invalid_argument("come on... You can't divide by zero");
+			computeRpn(&stack, s[i]);
+		}
+		else if (isdigit(s[i]))
+		{
+			std::string nbStr(1, s[i]);
+			stack.push(std::atoi(nbStr.c_str()));
 		}
 	}
-
+	std::cout << stack.top() << std::endl;
+	return ;
 }
 
-void computeRpn()
+void computeRpn(std::stack<int> *stack, char c)
 {
+	long long result;
+	result = stack->top();
+	stack->pop();
+	switch(c)
+	{
+		case '+':
+			result = stack->top() + result;
+			break;
+		case '-':
+			result = stack->top() - result;
+			break;
+		case '*':
+			result = stack->top() * result;
+			break;
+		default :
+			result = stack->top() / result;
+			break;
+	}
+	if (result < INT_MIN || result > INT_MAX)
+		throw std::runtime_error("INT_MAX or INT_MIN value overflow");
+	stack->pop();
+	stack->push(result);
 	return ;
 }
 
