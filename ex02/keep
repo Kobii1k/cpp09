@@ -1,0 +1,38 @@
+7 5 20 2 8 13 17
+[7 5] [20 2] [8 13] 17
+[7 5] [20 2] [13 8] 17
+[ [7 5] [20 2]] [[13 8]] 17
+[[20 2] [7 5]] [[13 8]] 17
+[20 2] [13 8] [7 5]  17
+20 13 7       17 2 8 5
+20 13 7 5
+20 13 7 5 2
+20 13 8 7 5 2
+20 17 13 8 7 5 2
+
+
+//v1
+//tant qu'il est possible de faire des paires :
+    //faire des paires (laissez un seul si impair)
+    //trier à l'interieur des pairs (le plus grand à gauche)
+
+//défaire toutes les paires en les triant (jsp comment)
+
+//faire deux "listes" avec les nombres de la gauche des paires et l'autre avec ceux de droites
+//grâce au jacobsthal, choisir les nombres les plus "optimisés" (2^n-1 maximum) pour faire le moins d'étapes possibles
+//les ajouter par dichotomie un par un
+
+
+//v2
+
+//si la taille du container de valeurs en entrée == 2
+	//trier si besoin
+//sinon
+	//trouver le milieu de la liste de nombres
+	//créer deux nouveaux containers : gauche et droit en divisant celui donné en parametres
+	//apeller la fonction actuelle sur ces deux parties
+//faire remonter les fonctions (jsp comment exactement? en défaisant les paires ? ça se fait tout seul peut etre)
+
+
+//v3
+//mix des deux, a peu près
