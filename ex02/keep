@@ -18,8 +18,6 @@
 	//stop
 //sinon
 	//faire des paires avec les plus grandes valeurs des paires du containers
-    //trier à l'interieur des pairs (le plus grand à gauche)
-	//garder la valeur potentiellement laissee seule
 	//rapeller la fonction actuelle avc les pairs triees
 
 //inserer la valeur secondaire inferieure a la plus petite "grande valeure"
