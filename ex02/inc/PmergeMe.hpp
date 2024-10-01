@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:21:22 by mgagne            #+#    #+#             */
-/*   Updated: 2024/10/01 18:38:45 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/10/01 22:26:29 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,9 @@
 	std::vector<std::pair<long, long> > makePair(std::vector<std::pair<long, long> > vPair);
 
 	std::vector<long> vSort(std::vector<long> sorted, std::vector<std::pair<long, long> > vPair);
-	std::vector<long> insertElements(std::vector<long> sorted, std::vector<std::pair<long, long> > vPair, std::vector<std::pair<long, long> > vPair2);
+	std::vector<long> insertElements(std::vector<long> sorted, std::vector<std::pair<long, long> > vPair);
+	int Jacobsthal(int cur, int last);
+	std::vector<long> binarySearch(int right, int value, std::vector<long> sorted);
+	int find_index(long value, std::vector<long> v);
+
 #endif
