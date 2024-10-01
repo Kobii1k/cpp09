@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:23:56 by mgagne            #+#    #+#             */
-/*   Updated: 2024/10/01 13:47:19 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/10/01 14:42:44 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,15 @@ std::vector<long> insertElements(std::vector<long> sorted, std::vector<std::pair
 	std::cout << std::endl;
 	for (size_t i = 0; i < vPair.size(); i++)
 	{
-		sorted.push_back(vPair[i].first);
 		//jacobsthal - dichotomie
 	}
 	return (sorted);
+}
+
+int Jacobsthal(int n)
+{
+	if (n == 0 || n == 1)
+		return (n);
+	else
+		return (Jacobsthal(n - 1) + (2 * Jacobsthal(n - 2)));
 }
