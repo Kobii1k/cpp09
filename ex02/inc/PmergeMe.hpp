@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:21:22 by mgagne            #+#    #+#             */
-/*   Updated: 2024/10/01 22:26:29 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/10/02 01:59:38 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,12 @@
 	void parseInput(int argc, char *argv[]);
 	void mergeInsert(int argc, char *argv[]);
 	std::vector<long> sortVector(std::vector<long> d);
-	std::deque<long> sortDeque(std::deque<long> d, int argc);
-	std::vector<std::pair<long, long> > fillVectorPair(std::vector<long> v);
+	std::deque<long> sortDeque(std::deque<long> d);
 
-	std::vector<std::pair<long, long> > makePair(std::vector<std::pair<long, long> > vPair);
+	std::vector<long > fillPairs(std::vector<long> v, std::vector<std::pair<long, long> > &pairs);
 
-	std::vector<long> vSort(std::vector<long> sorted, std::vector<std::pair<long, long> > vPair);
-	std::vector<long> insertElements(std::vector<long> sorted, std::vector<std::pair<long, long> > vPair);
 	int Jacobsthal(int cur, int last);
-	std::vector<long> binarySearch(int right, int value, std::vector<long> sorted);
+	void binarySearch(int right, int value, std::vector<long> &sorted);
 	int find_index(long value, std::vector<long> v);
 
 #endif
