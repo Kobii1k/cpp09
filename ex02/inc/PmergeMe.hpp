@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:21:22 by mgagne            #+#    #+#             */
-/*   Updated: 2024/10/02 10:26:37 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/10/02 12:16:40 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,22 @@
 
 	void parseInput(int argc, char *argv[]);
 	void mergeInsert(int argc, char *argv[]);
-	// std::deque<long> sortDeque(std::deque<long> d);
 
-	void fillPairs(std::vector<std::pair<long, long> >  v, std::vector<std::pair<long, long> > &pairs);
+
+	void fillPairs_v(std::vector<std::pair<long, long> >  v, std::vector<std::pair<long, long> > &pairs);
 	std::vector<long> sortVector(std::vector<std::pair<long, long> >  v);
 
 	int Jacobsthal(int cur, int last);
-	void binarySearch(int right, int value, std::vector<long> &sorted);
-	int find_index(long value, std::vector<long> v);
+	void binarySearch_v(int right, int value, std::vector<long> &sorted);
+	int find_index_v(long value, std::vector<long> v);
+
+	void fillPairs_d(std::deque<std::pair<long, long> >  v, std::deque<std::pair<long, long> > &pairs);
+	std::deque<long> sortDeque(std::deque<std::pair<long, long> >  d);
+
+	int Jacobsthal(int cur, int last);
+	void binarySearch_d(int right, int value, std::deque<long> &sorted);
+	int find_index_d(long value, std::deque<long> v);
+
+	void printDeque(std::deque<long> dq);
 
 #endif

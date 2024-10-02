@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:23:56 by mgagne            #+#    #+#             */
-/*   Updated: 2024/10/02 10:57:49 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/10/02 11:52:50 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ BitcoinExchange::BitcoinExchange(std::string csv, std::string in)
 		parse(in, 1);
 	}
 	catch (std::exception &err)
-	{
-		//empty db (+ structs in db) if not empty
-		std::cerr << "Error: " << err.what() << std::endl;
-	}
-	//empty db (+ structs in db) if not empty
+	{ std::cerr << "Error: " << err.what() << std::endl; }
 }
 
 void BitcoinExchange::parse(std::string file, int type)
