@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:23:56 by mgagne            #+#    #+#             */
-/*   Updated: 2024/09/29 18:25:05 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/10/02 10:57:49 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void BitcoinExchange::parse(std::string file, int type)
 		throw std::invalid_argument("invalid database or input files");
 	if (!inputFile.is_open())
 		throw std::invalid_argument("couldn't open database or input files");
-	std::getline(inputFile, line);
+	if (!std::getline(inputFile, line))
+		throw std::invalid_argument("empty file");
+	if (type == 1 && line.compare("date | value") != 0)
+		throw std::invalid_argument("1st line of input file isnt valid");
 	while (std::getline(inputFile, line))
 	{
 		if (!type)
@@ -119,8 +122,6 @@ void BitcoinExchange::useInput(std::string date, float amount)
 		throw std::invalid_argument("value not found");
 	if (lower != this->db.begin())
 		lower--;
-	std::cout << std::endl;
-	std::cout << date << " == " << lower->first << std::endl;
 	std::cout << date << " => " << amount << " = " << (amount * lower->second) << std::endl;
 }
 
