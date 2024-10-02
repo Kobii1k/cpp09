@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 01:10:39 by mgagne            #+#    #+#             */
-/*   Updated: 2024/10/02 02:08:47 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/10/02 10:31:50 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,26 @@ void printVector(std::vector<long> myVec)
 
 void mergeInsert(int argc, char *argv[])
 {
-	std::vector<long> v;
-	std::deque<long> d;
+	std::vector<long> vSorted;
+	std::deque<long> dSorted;
+
+	std::vector<std::pair<long, long> > v;
+	std::vector<std::pair<long, long> > d;
 
 	struct timeval start_t, end_t;
-	gettimeofday(&start_t, NULL);
-	gettimeofday(&end_t, NULL);
 
 	for (int i = 1; i < argc; i++)
 	{
-		v.push_back(strtol(argv[i], NULL, 10));
-		d.push_back(strtol(argv[i], NULL, 10));
+		v.push_back(std::pair<long, long>(strtol(argv[i], NULL, 10), 0));
+		// d.push_back(strtol(argv[i], NULL, 10));
 	}
 
-	printVector(v);
+	// printVector(v);
 	gettimeofday(&start_t, NULL);
-	v = sortVector(v);
+	vSorted = sortVector(v);
 	gettimeofday(&end_t, NULL);
 	std::cout << std::endl;
-	printVector(v);
+	printVector(vSorted);
 	std::cout << "Time for std::vector : " << (end_t.tv_usec - start_t.tv_usec) << " us" << std::endl;
 
 	// gettimeofday(&start_t, NULL);
@@ -67,7 +68,7 @@ void mergeInsert(int argc, char *argv[])
 	// std::cout << "Time for std::deque : " << (end_t.tv_usec - start_t.tv_usec) << " us" << std::endl;
 }
 
-std::vector<long> sortVector(std::vector<long> v)
+std::vector<long> sortVector(std::vector<std::pair<long, long> >  v)
 {
 	std::vector<long> sorted;
 	std::vector<long> highest;
@@ -76,26 +77,28 @@ std::vector<long> sortVector(std::vector<long> v)
 	int un1 = 1;
 	int un2 = 0;
 
-	highest = fillPairs(v, pairs);
-	if (highest.size() > 1)
-		sorted = sortVector(highest);
+	fillPairs(v, pairs);
+	if (pairs.size() > 1)
+		sorted = sortVector(pairs);
 	else
 	{
 		sorted.push_back(pairs[0].second);
 		sorted.push_back(pairs[0].first);
 		pairs.erase(pairs.begin());
 	}
-
-	while (!pairs.empty())
+	while (!pairs.empty() || v.size() % 2 == 1)
 	{
 		jacob = Jacobsthal(un1, un2);
 		un2 = un1;
 		un1 = jacob;
-		if (jacob > pairs.size() - 1)
+		if (jacob >= pairs.size())
 		{
 			jacob = pairs.size() - 1;
 			if (v.size() % 2 == 1)
-				binarySearch(sorted.size(), v[v.size() - 1], sorted);
+			{
+				binarySearch(sorted.size(), v[v.size() - 1].first, sorted);
+				v.pop_back();
+			}
 		}
 		while (jacob != std::string::npos)
 		{
@@ -108,21 +111,17 @@ std::vector<long> sortVector(std::vector<long> v)
 	return (sorted);
 }
 
-std::vector<long > fillPairs(std::vector<long> v, std::vector<std::pair<long, long> > &pairs)
+void fillPairs(std::vector<std::pair<long, long> >  v, std::vector<std::pair<long, long> > &pairs)
 {
-	std::vector<long> highest;
-
 	for (size_t i = 0; i < v.size(); i++)
 	{
 		if (i % 2 == 1)
 		{
-			if (v[i] < v[i - 1])
-				std::swap(v[i], v[i - 1]);
-			pairs.push_back(std::make_pair(v[i], v[i - 1]));
-			highest.push_back(v[i]);
+			if (v[i].first < v[i - 1].first)
+				std::swap(v[i].first, v[i - 1].first);
+			pairs.push_back(std::make_pair(v[i].first, v[i - 1].first));
 		}
 	}
-	return (highest);
 }
 
 int Jacobsthal(int cur, int last)
@@ -137,7 +136,7 @@ void binarySearch(int right, int value, std::vector<long> &sorted)
 
 	while (left < right)
 	{
-		mid = left + (right - left) / 2;
+		mid = (left + right) / 2;
 		if (sorted[mid] < value)
 			left = mid + 1;
 		else
