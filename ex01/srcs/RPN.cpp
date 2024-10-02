@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:23:56 by mgagne            #+#    #+#             */
-/*   Updated: 2024/09/30 04:31:56 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/10/02 09:54:18 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void startRpn(std::string  s)
 		{
 			if (s[i] == '/' && stack.top() == 0)
 				throw std::invalid_argument("come on... You can't divide by zero");
+			if (stack.size() < 2)
+				throw std::invalid_argument("not enough numbers to compute");
 			computeRpn(&stack, s[i]);
 		}
 		else if (isdigit(s[i]))

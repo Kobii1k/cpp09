@@ -6,7 +6,7 @@
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:15:22 by mgagne            #+#    #+#             */
-/*   Updated: 2024/09/30 04:08:02 by mgagne           ###   ########.fr       */
+/*   Updated: 2024/10/02 10:01:05 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		parse(s);
 		startRpn(s);
 	}
-	catch (std::invalid_argument const &err)
+	catch (std::exception const &err)
 	{ std::cerr << "Error: " << err.what() << std::endl;}
 
 	return (0);
